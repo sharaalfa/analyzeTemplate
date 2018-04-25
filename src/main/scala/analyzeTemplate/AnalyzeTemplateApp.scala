@@ -13,7 +13,9 @@ object AnalyzeTemplateApp extends AnalyzeTemplate {
   lazy val sc: SparkContext = new SparkContext(conf)
 
   def main(args: Array[String]): Unit = {
-    val lines = sc.textFile("src/main/resources/analyzeTemplate/shkib1.csv")
+    val lines = sc.textFile(s"${getClass
+      .getResource("/analyzeTemplate")
+      .getPath}/shkib1.csv")
 
     val raw = rawJournal(lines)
     scoreRequests(raw)
